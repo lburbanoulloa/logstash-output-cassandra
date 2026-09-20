@@ -90,7 +90,7 @@ module LogStash; module Outputs; module Cassandra
           case cassandra_type
             when 'float', 'int', 'varint', 'bigint', 'double', 'counter', 'timestamp'
               typed_event_data = convert_value_to_cassandra_type(0, cassandra_type)
-            when 'timeuuid'
+            when 'uuid', 'timeuuid'
               typed_event_data = convert_value_to_cassandra_type('00000000-0000-0000-0000-000000000000', cassandra_type)
             when 'inet'
               typed_event_data = convert_value_to_cassandra_type('0.0.0.0', cassandra_type)
@@ -144,6 +144,8 @@ module LogStash; module Outputs; module Cassandra
           return ::Cassandra::Types::Double.new(event_data)
         when 'timeuuid'
           return ::Cassandra::Types::Timeuuid.new(event_data)
+        when 'uuid'
+          return ::Cassandra::Types::Uuid.new(event_data)
         when /^set<(.*)>$/
           # convert each value
           # then add all to an array and convert to set
@@ -155,7 +157,7 @@ module LogStash; module Outputs; module Cassandra
           }
           return converted_items
         else
-          raise "Unknown cassandra_type #{name}"
+          raise "Unknown cassandra_type #{cassandra_type}"
       end
     end
   end

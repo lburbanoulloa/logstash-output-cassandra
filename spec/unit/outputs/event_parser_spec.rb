@@ -118,7 +118,8 @@ RSpec.describe LogStash::Outputs::Cassandra::EventParser do
           { :name => 'boolean',   :type => ::Cassandra::Types::Boolean,   :value => 'true' },
           { :name => 'decimal',   :type => ::Cassandra::Types::Decimal,   :value => '0.12E2' },
           { :name => 'double',    :type => ::Cassandra::Types::Double,    :value => '123.65' },
-          { :name => 'timeuuid',  :type => ::Cassandra::Types::Timeuuid,  :value => '00000000-0000-0000-0000-000000000000' }
+          { :name => 'timeuuid',  :type => ::Cassandra::Types::Timeuuid,  :value => '00000000-0000-0000-0000-000000000000' },
+          { :name => 'uuid',      :type => ::Cassandra::Types::Uuid,      :value => '00000000-0000-0000-0000-000000000000' }
         ].each { |mapping|
           # NOTE: this is not the best test there is, but it is the best / simplest I could think of :/
           it "properly maps #{mapping[:name]} to #{mapping[:type]}" do
@@ -268,7 +269,8 @@ RSpec.describe LogStash::Outputs::Cassandra::EventParser do
         { :name => 'int',       :value => 'i am not a int',           :expected => 0 },
         { :name => 'varint',    :value => 'i am not a varint',        :expected => 0 },
         { :name => 'double',    :value => 'i am not a double',        :expected => 0.0 },
-        { :name => 'timeuuid',  :value => 'i am not a timeuuid',      :expected => '00000000-0000-0000-0000-000000000000' }
+        { :name => 'timeuuid',  :value => 'i am not a timeuuid',      :expected => '00000000-0000-0000-0000-000000000000' },
+        { :name => 'uuid',      :value => 'i am not a uuid',          :expected => '00000000-0000-0000-0000-000000000000' }
     ].each { |mapping|
       # NOTE: this is not the best test there is, but it is the best / simplest I could think of :/
       it "properly defaults #{mapping[:name]}" do
