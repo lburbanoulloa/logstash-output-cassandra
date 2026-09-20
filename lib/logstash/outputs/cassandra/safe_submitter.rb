@@ -2,6 +2,7 @@
 require 'thread'
 require 'cassandra'
 require 'logstash/outputs/cassandra/backoff_retry_policy'
+require 'logstash/outputs/cassandra/schema_fetcher_version_patch'
 
 module LogStash; module Outputs; module Cassandra
   # Responsible for submitting parsed actions to cassandra (with or without a retry mechanism)
