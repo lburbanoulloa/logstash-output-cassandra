@@ -6,6 +6,8 @@ It is fully free and fully open source. The license is Apache 2.0, meaning you a
 
 It was originally a fork of the [logstash-output-cassandra](https://github.com/otokarev/logstash-output-cassandra) plugin by [Oleg Tokarev](https://github.com/otokarev), which has gone unmaintained and went through a major re-design in this version we built.
 
+This version fix a problem saving in Cassandra when origin data has UUID type fields. This version adds compatibility with Cassandra 5
+
 ## Usage
 
 <pre><code>
